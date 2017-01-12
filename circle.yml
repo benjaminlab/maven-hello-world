@@ -1,16 +1,17 @@
 machine:
+  python:
+    version: 2.7.3
   services:
     - docker
 
 dependencies:
-  override:
-    - docker info
-    - docker build --rm=false -t bbach/myrepo1:1 .
+  pre:
+    - pip install awscli
+    - docker build --rm=false -t bbach/myrepo1:$CIRCLE_SHA1 .
 
 deployment:
-  hub:
+  elasticbeanstalk:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker images
-      - docker push bbach/myrepo1:1
+      - ./deploy.sh $CIRCLE_SHA1
