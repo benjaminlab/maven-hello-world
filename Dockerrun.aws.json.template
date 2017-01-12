@@ -1,1 +1,17 @@
-{}
+{
+ "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+    "Bucket": "testbucketbenjamin",
+    "Key": "config.json"
+  },
+ "Image": {
+    "Name": "bbach/myrepo1:<TAG>",
+    "Update": "true"
+  },
+ "Ports": [
+   {
+     "ContainerPort": "9091"
+   }
+ ],
+ "Logging": "/var/newlog"
+}
