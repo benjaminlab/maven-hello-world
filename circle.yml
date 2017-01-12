@@ -5,11 +5,11 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build --rm=false -t bbach/myrepo1 .
+    - docker build --rm=false -t bbach/myrepo1:1 .
 
 deployment:
   hub:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push bbach/myrepo1
+      - docker push bbach/myrepo1:1
